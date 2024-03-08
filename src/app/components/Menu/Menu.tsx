@@ -32,7 +32,11 @@ export function Menu() {
                 <AppTitle textColor={"text-black"} pd={"pl-2 pt-3"} />
                 <div className="menuItem pt-5">
                   {menuItems.map((item) => (
-                    <MenuItem href={item.href} name={item.name} />
+                    <MenuItem
+                      href={item.href}
+                      name={item.name}
+                      key={item.name}
+                    />
                   ))}
                 </div>
               </div>

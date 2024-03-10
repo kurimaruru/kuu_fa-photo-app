@@ -31,7 +31,7 @@ export default function Works() {
         } left-0 h-screen w-full`}
       >
         <div
-          className={`article-image w-full overflow-y-scroll snap-y snap-mandatory`}
+          className={`article-image w-full overflow-y-scroll snap-y snap-mandatory hidden-scrollbar`}
           style={{ height: `${imageHeight}px` }}
         >
           {displayWidth &&
@@ -57,7 +57,7 @@ export default function Works() {
           Articles
         </p>
         <div
-          className="article-title overflow-y-scroll"
+          className="article-title overflow-y-scroll hidden-scrollbar"
           style={{ height: `${imageHeight}px` }}
           ref={scrollRef}
         >

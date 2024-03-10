@@ -22,6 +22,7 @@ export const WorksHooks = () => {
       height={1080}
       style={{ width: "100%", height: `${imageHeight}px` }}
       alt={"home_1"}
+      key={"home_1"}
     />,
     <Image
       src="/home_2.jpg"
@@ -29,6 +30,7 @@ export const WorksHooks = () => {
       height={1080}
       style={{ width: "100%", height: `${imageHeight}px` }}
       alt={"home_2"}
+      key={"home_2"}
     />,
     <Image
       src="/home_3.jpg"
@@ -36,6 +38,7 @@ export const WorksHooks = () => {
       height={1080}
       style={{ width: "100%", height: `${imageHeight}px` }}
       alt={"home_3"}
+      key={"home_3"}
     />,
   ];
 

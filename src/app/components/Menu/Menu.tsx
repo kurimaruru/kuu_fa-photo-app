@@ -2,7 +2,6 @@
 
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
-import { Dispatch, SetStateAction } from "react";
 import { MenuItem } from "../MenuItem/MenuItem";
 
 const menuItems = [
@@ -13,16 +12,16 @@ const menuItems = [
 
 type Props = {
   open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  handleMenu: () => void;
 };
 
 export function Menu(props: Props) {
   return (
-    <Popover className="">
+    <Popover>
       <>
         <Popover.Button
           className="fixed top-2 right-2 z-40"
-          onClick={() => props.setOpen((prev) => !prev)}
+          onClick={props.handleMenu}
         >
           <OpenIcon open={props.open} />
         </Popover.Button>
@@ -34,7 +33,7 @@ export function Menu(props: Props) {
           leaveFrom="opacity-100 translate-x-0"
           leaveTo="opacity-0 -translate-x-full"
         >
-          <Popover.Panel className="fixed top-0 right-0 z-10 w-full  px-4 bg-white">
+          <Popover.Panel className="fixed top-0 right-0 z-30 w-full  px-4 bg-slate-50">
             <div className="h-screen">
               <div className="menuItem mt-20">
                 {menuItems.map((item) => (

@@ -9,8 +9,8 @@ export function Navbar() {
   return (
     <>
       <Menu open={menuOpen} setOpen={setMenuOpen} />
-      <div className="header sticky top-0 w-full h-16 justify-between">
-        {!menuOpen && <AppTitle textColor={"text-white"} pd={"pl-5 pt-3"} />}
+      <div className="header fixed top-0 left-0 z-50  h-16">
+        <AppTitle textColor={"text-black"} pd={"pl-5 pt-3"} />
       </div>
     </>
   );

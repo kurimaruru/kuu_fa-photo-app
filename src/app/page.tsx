@@ -1,13 +1,6 @@
 import Image from "next/image";
 
-import { Allura } from "next/font/google";
 import { Navbar } from "./components/Navbar";
-
-const AlluraFont = Allura({
-  weight: "400",
-  display: "swap",
-  preload: false,
-});
 
 export default function Home() {
   return (

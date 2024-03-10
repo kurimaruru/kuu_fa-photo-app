@@ -3,7 +3,6 @@
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
 import { Dispatch, SetStateAction } from "react";
-import AppTitle from "../AppTitle/AppTitle";
 import { MenuItem } from "../MenuItem/MenuItem";
 
 const menuItems = [
@@ -22,23 +21,22 @@ export function Menu(props: Props) {
     <Popover className="">
       <>
         <Popover.Button
-          className="fixed top-2 right-2 z-50"
+          className="fixed top-2 right-2 z-40"
           onClick={() => props.setOpen((prev) => !prev)}
         >
           <OpenIcon open={props.open} />
         </Popover.Button>
         <Transition
-          enter="transition ease duration-700 transform"
-          enterFrom="opacity-0 -translate-y-full"
-          enterTo="opacity-100 translate-y-0"
+          enter="transition ease duration-500 transform"
+          enterFrom="opacity-0 -translate-x-full"
+          enterTo="opacity-100 translate-x-0"
           leave="transition ease duration-500 transform"
-          leaveFrom="opacity-100 translate-y-0"
-          leaveTo="opacity-0 -translate-y-full"
+          leaveFrom="opacity-100 translate-x-0"
+          leaveTo="opacity-0 -translate-x-full"
         >
           <Popover.Panel className="fixed top-0 right-0 z-10 w-full  px-4 bg-white">
-            <div className="h-lvh">
-              <AppTitle textColor={"text-black"} pd={"pl-2 pt-3"} />
-              <div className="menuItem pt-5">
+            <div className="h-screen">
+              <div className="menuItem mt-20">
                 {menuItems.map((item) => (
                   <MenuItem href={item.href} name={item.name} key={item.name} />
                 ))}
@@ -66,7 +64,7 @@ const OpenIcon = (props: OpenIconProps) => {
         <Bars3Icon
           className={`${
             props.open ? "rotate-180 transform" : ""
-          } transition-opacity duration-700 ease-in-out text-white w-12 h-12 p-0`}
+          } transition-opacity duration-700 ease-in-out text-gray-900 w-12 h-12 p-0`}
         />
       )}
     </>

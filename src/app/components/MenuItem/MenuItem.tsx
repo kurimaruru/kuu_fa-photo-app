@@ -13,7 +13,7 @@ const OutfitFont = Outfit({
 
 export function MenuItem(props: Props) {
   return (
-    <div className="py-2 text-2xl">
+    <div className="py-2 text-2xl text-black hover:text-gray-400">
       <a
         className={`${OutfitFont.className}`}
         href={`${props.href}`}

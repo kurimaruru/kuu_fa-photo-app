@@ -1,8 +1,7 @@
 import Image from "next/image";
 
 import { Allura } from "next/font/google";
-import AppTitle from "./components/AppTitle/AppTitle";
-import { Menu } from "./components/Menu/Menu";
+import { Navbar } from "./components/Navbar";
 
 const AlluraFont = Allura({
   weight: "400",
@@ -13,10 +12,7 @@ const AlluraFont = Allura({
 export default function Home() {
   return (
     <div className="w-full h-screen">
-      <Menu />
-      <div className="header flex w-full h-16 justify-between">
-        <AppTitle textColor={"text-white"} pd={"pl-5 pt-3"} />
-      </div>
+      <Navbar />
       <div className={`main fixed top-0 left-0 w-full h-screen z-[-1]`}>
         <Image
           src="/home_1.jpg"

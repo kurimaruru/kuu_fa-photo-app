@@ -2,6 +2,7 @@
 
 import { Outfit } from "next/font/google";
 import { Navbar } from "../components/Navbar";
+import { WorksImages } from "../components/WorksImages";
 import { WorksHooks } from "./works.hooks";
 
 const OutfitFont = Outfit({
@@ -30,31 +31,19 @@ export default function Works() {
           menuOpen ? "z-[-1]" : ""
         } left-0 h-screen w-full`}
       >
-        <div
-          className={`article-image w-full overflow-y-scroll snap-y snap-mandatory hidden-scrollbar`}
-          style={{ height: `${imageHeight}px` }}
-        >
-          {displayWidth &&
-            Images.map((image, index) => (
-              <div
-                key={index}
-                ref={(el) => (imageRefs.current[index] = el!)}
-                className="snap-start"
-              >
-                <span
-                  className={
-                    currentImageIndex === index ? `animate-fadeIn` : ""
-                  }
-                >
-                  {image}
-                </span>
-              </div>
-            ))}
-        </div>
+        <WorksImages
+          displayWidth={displayWidth}
+          currentImageIndex={currentImageIndex}
+          imageHeight={imageHeight}
+          imageRefs={imageRefs}
+        />
         <p
           className={`${OutfitFont.className} text-3xl text-black underline decoration-1`}
         >
           Articles
+        </p>
+        <p className={`${OutfitFont.className} text-xl text-black ml-4 mt-3`}>
+          20photos
         </p>
         <div
           className="article-title overflow-y-scroll hidden-scrollbar"
@@ -62,8 +51,19 @@ export default function Works() {
           ref={scrollRef}
         >
           <div
+            className="dummy-scroll-area"
             style={{ height: `calc(${imageHeight}px * ${Images.length})` }}
-          ></div>
+          >
+            <div className="fixed scrolldown4">
+              <span className="absolute left-10 top-60 text-black text-2xl animate-arrowmove [writing-mode:vertical-rl]">
+                Scroll
+              </span>
+              <div className="absolute left-16 top-56 flex animate-arrowmove">
+                <div className="w-[3px] h-40 ml-6 bg-black"></div>
+                <div className="w-[3px] h-10 mt-[120px] -ml-[21px]  bg-black transform skew-x-[45deg]"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

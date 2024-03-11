@@ -13,11 +13,16 @@ module.exports = {
       },
       animation: {
         fadeIn: "fadeIn 1.5s ease-out both",
+        arrowmove: "arrowmove 1s ease-in-out infinite",
       },
       keyframes: {
         fadeIn: {
           "0%": { opacity: 0, transform: "translateY(-100%)" },
           to: { opacity: 1, transform: "translateY(0)" },
+        },
+        arrowmove: {
+          "0%, 100%": { transform: "translateY(-5%)" },
+          "50%": { transform: "translateY(0)" },
         },
       },
     },

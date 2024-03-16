@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const WorksHooks = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -67,51 +67,11 @@ export const WorksHooks = () => {
     }
   }, [displayWidth]);
 
-  let scrollingTimer: number | null = null;
-
-  function onScrollStopped(callback: () => void, delay: number = 100): void {
-    if (scrollingTimer !== null) {
-      clearTimeout(scrollingTimer);
-    }
-    scrollingTimer = window.setTimeout(() => {
-      scrollingTimer = null;
-      callback();
-    }, delay);
-  }
-
-  useEffect(() => {
-    const handleScroll = () => {
-      // スクロールを検知したら次の画像までスクロールしてあげる
-      if (scrollRef.current) {
-        const scrollTop = scrollRef.current.scrollTop;
-        const scrollHeight = scrollRef.current.scrollHeight;
-        const clientHeight = scrollRef.current.clientHeight;
-        setCurrentImageIndex((prev) => {
-          imageRefs.current[
-            prev < Images.length - 1 ? prev + 1 : 0
-          ].scrollIntoView();
-          return prev < Images.length - 1 ? prev + 1 : 0;
-        });
-        // スクロールが一番下まで到達したら疑似スクロール領域トップに戻す
-        if (Math.abs(scrollHeight - clientHeight) - Math.abs(scrollTop) <= 3) {
-          scrollRef.current.scrollTop = 0;
-        }
-      }
-    };
-
-    if (scrollRef.current) {
-      scrollRef.current.addEventListener("scroll", () => {
-        onScrollStopped(() => {
-          handleScroll();
-        });
-      });
-    }
-
-    return () => {
-      if (scrollRef.current) {
-        scrollRef.current.removeEventListener("scroll", handleScroll);
-      }
-    };
+  const switchImagesBySetTimeOut = useCallback(() => {
+    setCurrentImageIndex((prev) => {
+      console.log("prev", prev);
+      return prev < Images.length - 1 ? prev + 1 : 0;
+    });
   }, []);
 
   return {
@@ -123,6 +83,6 @@ export const WorksHooks = () => {
     imageHeight,
     imageRefs,
     currentImageIndex,
-    scrollRef,
+    switchImagesBySetTimeOut,
   };
 };

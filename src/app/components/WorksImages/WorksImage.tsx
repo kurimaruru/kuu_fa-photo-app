@@ -2,12 +2,11 @@ import Image from "next/image";
 
 type Props = {
   displayWidth: number | undefined;
-  currentImageIndex: number;
   imageHeight: number | undefined;
   imageRefs: React.MutableRefObject<HTMLElement[]>;
 };
 
-export const WorksImages = (props: Props) => {
+const WorksImages = (props: Props) => {
   const Images = [
     <Image
       src="/home_1.jpg"
@@ -39,25 +38,19 @@ export const WorksImages = (props: Props) => {
   ];
   return (
     <div
-      className={`article-image w-full overflow-y-scroll snap-y snap-mandatory hidden-scrollbar`}
-      style={{ height: `${props.imageHeight}px`, overflow: "hidden" }}
+      className={`article-image w-full`}
+      style={{
+        height: `${props.imageHeight}px `,
+      }}
     >
       {props.displayWidth &&
         Images.map((image, index) => (
-          <div
-            key={index}
-            ref={(el) => (props.imageRefs.current[index] = el!)}
-            className="snap-start"
-          >
-            <span
-              className={
-                props.currentImageIndex === index ? `animate-fadeIn` : ""
-              }
-            >
-              {image}
-            </span>
+          <div className="mx-3 mb-2 hover:opacity-70" key={index}>
+            <a href="/">{image}</a>
           </div>
         ))}
     </div>
   );
 };
+
+export default WorksImages;

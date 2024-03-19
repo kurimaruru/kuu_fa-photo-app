@@ -15,31 +15,9 @@ export default function Home() {
   const [loading, setLoading] = useState(true); // ローディング状態を管理する状態
 
   useEffect(() => {
-    const images = document.querySelectorAll("img");
-    let loadedCount = 0;
-
-    const handleLoad = () => {
-      loadedCount++;
-      if (loadedCount === images.length) {
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
-      }
-    };
-
-    images.forEach((img) => {
-      if (img.complete) {
-        handleLoad();
-      } else {
-        img.addEventListener("load", handleLoad);
-      }
-    });
-
-    return () => {
-      images.forEach((img) => {
-        img.removeEventListener("load", handleLoad);
-      });
-    };
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
   return (
     <div className="w-full h-screen">

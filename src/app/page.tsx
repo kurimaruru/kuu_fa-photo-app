@@ -10,7 +10,7 @@ export default function Home() {
   const handleMenu = () => {
     setTimeout(() => {
       setMenuOpen((prev) => !prev);
-    }, 500);
+    }, 300);
   };
   return (
     <div className="w-full h-screen">
@@ -20,7 +20,7 @@ export default function Home() {
           menuOpen ? "z-[-1]" : ""
         } `}
       >
-        <div className="flex flex-wrap fixed top-20 w-full">
+        <div className="flex flex-wrap fixed top-20 w-full h-[calc(100%-80px)] overflow-y-scroll hidden-scrollbar">
           <div className="w-1/3">
             <Image
               src="/home_6.jpg"

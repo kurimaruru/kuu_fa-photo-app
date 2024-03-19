@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
 
 export default function Home() {
@@ -12,13 +12,52 @@ export default function Home() {
       setMenuOpen((prev) => !prev);
     }, 300);
   };
+  const [loading, setLoading] = useState(true); // ローディング状態を管理する状態
+
+  useEffect(() => {
+    const images = document.querySelectorAll("img");
+    let loadedCount = 0;
+
+    const handleLoad = () => {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      }
+    };
+
+    images.forEach((img) => {
+      if (img.complete) {
+        handleLoad();
+      } else {
+        img.addEventListener("load", handleLoad);
+      }
+    });
+
+    return () => {
+      images.forEach((img) => {
+        img.removeEventListener("load", handleLoad);
+      });
+    };
+  }, []);
   return (
     <div className="w-full h-screen">
+      {loading && ( // ローディング中はローディング画面を表示
+        <div
+          className={`fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-white z-50 ${
+            !loading &&
+            "transform transition duration-600 ease-in-out opacity-0"
+          } `}
+        >
+          <h1 className="animate-arrowmove">Loading...</h1>
+        </div>
+      )}
       <Navbar open={menuOpen} handleMenu={handleMenu} />
       <div
         className={`main fixed top-0 left-0 w-full h-screen ${
           menuOpen ? "z-[-1]" : ""
-        } `}
+        } ${!loading && "animate-fadeIn"}`}
       >
         <div className="flex flex-wrap fixed top-20 w-full h-[calc(100%-80px)] overflow-y-scroll hidden-scrollbar">
           <div className="w-1/3">

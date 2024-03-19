@@ -1,7 +1,6 @@
 "use client";
 
 import { Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/16/solid";
 import { MenuItem } from "../MenuItem/MenuItem";
 
 const menuItems = [
@@ -55,17 +54,32 @@ type OpenIconProps = {
 const OpenIcon = (props: OpenIconProps) => {
   return (
     <>
-      {props.open ? (
-        <XMarkIcon
-          className={`transition-opacity duration-700 ease-in-out text-gray-900 w-12 h-12 p-0`}
-        />
-      ) : (
-        <Bars3Icon
+      <div className="block w-16 absolute top-6 transform  -translate-x-1/2 -translate-y-1/2">
+        <span
+          aria-hidden="true"
           className={`${
-            props.open ? "rotate-180 transform" : ""
-          } transition-opacity duration-700 ease-in-out text-gray-900 w-12 h-12 p-0`}
-        />
-      )}
+            props.open
+              ? "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out rotate-45"
+              : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out -translate-y-1.5"
+          }`}
+        ></span>
+        <span
+          aria-hidden="true"
+          className={`${
+            props.open
+              ? "block absolute h-0.5 w-7 bg-current transform transition duration-600 ease-in-out opacity-0"
+              : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out "
+          }`}
+        ></span>
+        <span
+          aria-hidden="true"
+          className={`${
+            props.open
+              ? "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out -rotate-45"
+              : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out translate-y-1.5"
+          }`}
+        ></span>
+      </div>
     </>
   );
 };

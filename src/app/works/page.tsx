@@ -1,16 +1,9 @@
 "use client";
 
-import { Outfit } from "next/font/google";
-import { Suspense, lazy } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { WorksHooks } from "./works.hooks";
 const WorksImages = lazy(() => import("../components/WorksImages/WorksImage"));
-
-const OutfitFont = Outfit({
-  weight: "200",
-  display: "swap",
-  preload: false,
-});
 
 export default function Works() {
   const {
@@ -22,9 +15,27 @@ export default function Works() {
     imageRefs,
     displayWidth,
   } = WorksHooks();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
+  let [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="w-full" ref={ref}>
+      {loading && (
+        <div
+          className={`fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-white z-50 ${
+            !loading &&
+            "transform transition duration-600 ease-in-out opacity-0"
+          } `}
+        >
+          <h1 className="animate-arrowmove">Loading...</h1>
+        </div>
+      )}
       <Navbar open={menuOpen} handleMenu={handleMenu} />
       <div
         className={`main fixed top-20 ${
@@ -35,15 +46,13 @@ export default function Works() {
           WebkitOverflowScrolling: "touch",
         }}
       >
-        <Suspense
-          fallback={<div className="text-3xl text-black">Loading...</div>}
-        >
-          <WorksImages
-            displayWidth={displayWidth}
-            imageHeight={imageHeight}
-            imageRefs={imageRefs}
-          />
-        </Suspense>
+        <WorksImages
+          displayWidth={displayWidth}
+          imageHeight={imageHeight}
+          imageRefs={imageRefs}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       </div>
     </div>
   );

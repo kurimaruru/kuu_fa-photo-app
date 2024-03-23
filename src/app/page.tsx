@@ -12,7 +12,7 @@ export default function Home() {
       setMenuOpen((prev) => !prev);
     }, 300);
   };
-  const [loading, setLoading] = useState(true); // ローディング状態を管理する状態
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {

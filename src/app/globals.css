@@ -13,3 +13,6 @@
     display: none;
   }
 }
+.swiper-pagination-bullet-active {
+  background-color: #e0ffff !important;
+}

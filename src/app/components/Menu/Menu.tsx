@@ -53,33 +53,31 @@ type OpenIconProps = {
 
 const OpenIcon = (props: OpenIconProps) => {
   return (
-    <>
-      <div className="block w-16 absolute top-6 transform  -translate-x-1/2 -translate-y-1/2">
-        <span
-          aria-hidden="true"
-          className={`${
-            props.open
-              ? "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out rotate-45"
-              : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out -translate-y-1.5"
-          }`}
-        ></span>
-        <span
-          aria-hidden="true"
-          className={`${
-            props.open
-              ? "block absolute h-0.5 w-7 bg-current transform transition duration-600 ease-in-out opacity-0"
-              : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out "
-          }`}
-        ></span>
-        <span
-          aria-hidden="true"
-          className={`${
-            props.open
-              ? "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out -rotate-45"
-              : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out translate-y-1.5"
-          }`}
-        ></span>
-      </div>
-    </>
+    <div className="block w-16 absolute top-6 transform  -translate-x-1/2 -translate-y-1/2">
+      <span
+        aria-hidden="true"
+        className={`${
+          props.open
+            ? "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out rotate-45"
+            : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out -translate-y-1.5"
+        }`}
+      ></span>
+      <span
+        aria-hidden="true"
+        className={`${
+          props.open
+            ? "block absolute h-0.5 w-7 bg-current transform transition duration-600 ease-in-out opacity-0"
+            : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out "
+        }`}
+      ></span>
+      <span
+        aria-hidden="true"
+        className={`${
+          props.open
+            ? "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out -rotate-45"
+            : "block absolute h-0.5 w-7 bg-current transform transition duration-300 ease-in-out translate-y-1.5"
+        }`}
+      ></span>
+    </div>
   );
 };

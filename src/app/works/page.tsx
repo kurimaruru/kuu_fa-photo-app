@@ -22,7 +22,7 @@ export default function Works() {
       setLoading(false);
     }, 2000);
   }, []);
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="w-full" ref={ref}>

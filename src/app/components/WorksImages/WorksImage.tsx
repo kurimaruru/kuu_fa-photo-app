@@ -1,6 +1,6 @@
 import { Outfit } from "next/font/google";
 import Image from "next/image";
-import { SliderDialog } from "../SliderDialog/SliderDialog";
+import { AllPhoto } from "../AllPhoto/AllPhoto";
 
 const OutfitFont = Outfit({
   weight: "200",
@@ -62,7 +62,7 @@ const WorksImages = (props: Props) => {
             </div>
           ))}
       </div>
-      <SliderDialog
+      <AllPhoto
         isOpen={props.isOpen}
         setIsOpen={props.setIsOpen}
         height={props.imageHeight}

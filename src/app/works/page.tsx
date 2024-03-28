@@ -6,15 +6,8 @@ import { WorksHooks } from "./works.hooks";
 const WorksImages = lazy(() => import("../components/WorksImages/WorksImage"));
 
 export default function Works() {
-  const {
-    ref,
-    Images,
-    menuOpen,
-    handleMenu,
-    imageHeight,
-    imageRefs,
-    displayWidth,
-  } = WorksHooks();
+  const { ref, menuOpen, handleMenu, imageHeight, imageRefs, displayWidth } =
+    WorksHooks();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

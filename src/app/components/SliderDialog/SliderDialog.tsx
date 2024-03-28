@@ -44,7 +44,7 @@ export const SliderDialog = (props: Props) => {
   };
   return (
     <Transition appear show={props.isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={props.setIsOpen}>
+      <Dialog as="div" className="relative z-50" onClose={props.setIsOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export const WorksHooks = () => {
   const ref = useRef<HTMLDivElement>(null);
   const imageRefs = useRef<HTMLDivElement[]>([]);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

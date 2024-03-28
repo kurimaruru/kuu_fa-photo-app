@@ -3,9 +3,10 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
+import { XMarkIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
+import AppTitle from "../AppTitle/AppTitle";
 import { SliderDialog } from "../SliderDialog/SliderDialog";
-
 type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -13,7 +14,7 @@ type Props = {
 };
 
 export const AllPhoto = (props: Props) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [sliderIsOpen, setSliderIsOpen] = useState(false);
 
   const Images = [
     {
@@ -35,11 +36,6 @@ export const AllPhoto = (props: Props) => {
       path: "/home_4.jpg",
       key: "home_4",
       title: "Hiroshima",
-    },
-    {
-      path: "/home_2.jpg",
-      key: "home_2",
-      title: "Tokyo",
     },
     {
       path: "/home_5.jpg",
@@ -73,12 +69,12 @@ export const AllPhoto = (props: Props) => {
     },
     {
       path: "/home_3.jpg",
-      key: "home_3",
+      key: "home_11",
       title: "Tachikawa",
     },
     {
       path: "/home_1.jpg",
-      key: "home_1",
+      key: "home_12",
       title: "Hiroshima",
     },
     {
@@ -113,7 +109,7 @@ export const AllPhoto = (props: Props) => {
       <Transition appear show={props.isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="relative z-10"
+          className="relative z-50"
           onClose={() => {
             return;
           }}
@@ -129,7 +125,17 @@ export const AllPhoto = (props: Props) => {
           >
             <div className="fixed inset-0 bg-white" />
           </Transition.Child>
-
+          <div className="absolute top-3 right-2">
+            {props.isOpen && (
+              <XMarkIcon
+                className="h-10 w-10 cursor-pointer"
+                onClick={() => props.setIsOpen(false)}
+              />
+            )}
+          </div>
+          <div className="fixed top-0 left-0 z-50 h-16">
+            <AppTitle textColor={"text-black"} pd={"pl-5 pt-3"} />
+          </div>
           <div className="fixed top-20 overflow-y-auto ">
             <div className="flex min-h-full items-center justify-center  text-center">
               <Transition.Child
@@ -144,7 +150,7 @@ export const AllPhoto = (props: Props) => {
                 <Dialog.Panel
                   className={`flex flex-wrap w-full h-screen max-w-md transform rounded-sm bg-white text-left align-middle shadow-xl transition-all`}
                 >
-                  {Images.map((image) => (
+                  {Images.map((image, index) => (
                     <Image
                       src={`${image.path}`}
                       width={1616}
@@ -155,9 +161,9 @@ export const AllPhoto = (props: Props) => {
                         padding: "1%",
                       }}
                       alt={`${image.key}`}
-                      key={`${image.key}`}
+                      key={index}
                       priority
-                      onClick={() => setIsOpen(true)}
+                      onClick={() => setSliderIsOpen(true)}
                     />
                   ))}
                 </Dialog.Panel>
@@ -167,8 +173,8 @@ export const AllPhoto = (props: Props) => {
         </Dialog>
       </Transition>
       <SliderDialog
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
+        isOpen={sliderIsOpen}
+        setIsOpen={setSliderIsOpen}
         height={props.height}
       />
     </>

@@ -11,98 +11,11 @@ type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   height: number | undefined;
+  imagesPath: string[];
 };
 
 export const AllPhoto = (props: Props) => {
   const [sliderIsOpen, setSliderIsOpen] = useState(false);
-
-  const Images = [
-    {
-      path: "/home_1.jpg",
-      key: "home_1",
-      title: "Hiroshima",
-    },
-    {
-      path: "/home_2.jpg",
-      key: "home_2",
-      title: "Tokyo",
-    },
-    {
-      path: "/home_3.jpg",
-      key: "home_3",
-      title: "Tachikawa",
-    },
-    {
-      path: "/home_4.jpg",
-      key: "home_4",
-      title: "Hiroshima",
-    },
-    {
-      path: "/home_5.jpg",
-      key: "home_5",
-      title: "Tachikawa",
-    },
-    {
-      path: "/home_6.jpg",
-      key: "home_6",
-      title: "Hiroshima",
-    },
-    {
-      path: "/home_7.jpg",
-      key: "home_7",
-      title: "Tokyo",
-    },
-    {
-      path: "/home_8.jpg",
-      key: "home_8",
-      title: "Tachikawa",
-    },
-    {
-      path: "/home_9.jpg",
-      key: "home_9",
-      title: "Hiroshima",
-    },
-    {
-      path: "/home_10.jpg",
-      key: "home_10",
-      title: "Tokyo",
-    },
-    {
-      path: "/home_3.jpg",
-      key: "home_11",
-      title: "Tachikawa",
-    },
-    {
-      path: "/home_1.jpg",
-      key: "home_12",
-      title: "Hiroshima",
-    },
-    {
-      path: "/home_2.jpg",
-      key: "home_2",
-      title: "Tokyo",
-    },
-    {
-      path: "/home_3.jpg",
-      key: "home_3",
-      title: "Tachikawa",
-    },
-    {
-      path: "/home_1.jpg",
-      key: "home_1",
-      title: "Hiroshima",
-    },
-    {
-      path: "/home_2.jpg",
-      key: "home_2",
-      title: "Tokyo",
-    },
-    {
-      path: "/home_3.jpg",
-      key: "home_3",
-      title: "Tachikawa",
-    },
-  ];
 
   return (
     <>
@@ -150,9 +63,9 @@ export const AllPhoto = (props: Props) => {
                 <Dialog.Panel
                   className={`flex flex-wrap w-full h-screen max-w-md transform rounded-sm bg-white text-left align-middle shadow-xl transition-all`}
                 >
-                  {Images.map((image, index) => (
+                  {props.imagesPath.map((path, index) => (
                     <Image
-                      src={`${image.path}`}
+                      src={`${path}`}
                       width={1616}
                       height={1080}
                       style={{
@@ -160,7 +73,7 @@ export const AllPhoto = (props: Props) => {
                         height: `calc(${props.height}px / 2)`,
                         padding: "1%",
                       }}
-                      alt={`${image.key}`}
+                      alt={`${path}`}
                       key={index}
                       priority
                       onClick={() => setSliderIsOpen(true)}

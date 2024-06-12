@@ -28,8 +28,8 @@ const WorksImages = (props: Props) => {
       >
         {props.displayWidth &&
           props.worksImages.map((image, index) => (
-            <div>
-              <div className="relative mx-1 mb-1 hover:opacity-70" key={index}>
+            <div key={index}>
+              <div className="relative mx-1 mb-1 hover:opacity-70">
                 <Image
                   src={`${image.thumbnail}`}
                   width={1616}

@@ -1,8 +1,8 @@
 import { WorksContainer } from "../components/WorksContainer/WorksContainer";
-import { apiClient } from "../utils/baseApi";
+import { getImages } from "../utils/getImages";
 
 export default async function Works() {
-  const worksImages = await apiClient("/api/getImages", "POST");
+  const worksImages = getImages();
   return (
     <div>
       <WorksContainer worksImages={worksImages} />

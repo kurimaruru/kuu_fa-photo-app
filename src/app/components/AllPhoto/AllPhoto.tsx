@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
@@ -16,6 +16,16 @@ type Props = {
 
 export const AllPhoto = (props: Props) => {
   const [sliderIsOpen, setSliderIsOpen] = useState(false);
+  const [worksImagePathArr, setWorksImagePathArr] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setTimeout(function () {
+        setWorksImagePathArr(props.imagesPath);
+      }, 1000);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -63,7 +73,7 @@ export const AllPhoto = (props: Props) => {
                 <Dialog.Panel
                   className={`flex flex-wrap w-full h-screen max-w-md transform rounded-sm bg-white text-left align-middle shadow-xl transition-all`}
                 >
-                  {props.imagesPath.map((path, index) => (
+                  {worksImagePathArr.map((path, index) => (
                     <Image
                       src={`${path}`}
                       width={1616}

@@ -46,12 +46,14 @@ const WorksImages = (props: Props) => {
                   {image.title}
                 </p>
               </div>
-              <AllPhoto
-                isOpen={props.isOpen}
-                setIsOpen={props.setIsOpen}
-                height={props.imageHeight}
-                imagesPath={image.worksImages}
-              />
+              {props.isOpen && (
+                <AllPhoto
+                  isOpen={props.isOpen}
+                  setIsOpen={props.setIsOpen}
+                  height={props.imageHeight}
+                  imagesPath={image.worksImages}
+                />
+              )}
             </div>
           ))}
       </div>

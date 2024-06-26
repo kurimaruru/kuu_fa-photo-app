@@ -5,27 +5,10 @@ import { Navbar } from "../components/Navbar";
 import Image from "next/image";
 
 export default function About() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const handleMenu = () => {
-    setTimeout(
-      () => {
-        setMenuOpen((prev) => !prev);
-      },
-      menuOpen ? 300 : 0
-    );
-  };
   return (
     <div>
-      <Navbar open={menuOpen} handleMenu={handleMenu} />
+      <Navbar />
       <div className="fixed top-20">
-        <Image
-          src="/about/about1.jpg"
-          width={1616}
-          height={1080}
-          style={{ width: "300px", height: `300px` }}
-          alt={"about"}
-          priority
-        />
         藤野大輔 Daisuke Fujino 1998年　東京都出身。 元サッカー少年、現無職。
         好きなもの：Oasis（ロックバンド）、自然、エスニック料理全般
         嫌いなもの：マヨネーズ

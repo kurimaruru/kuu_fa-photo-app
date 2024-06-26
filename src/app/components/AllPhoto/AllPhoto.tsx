@@ -1,12 +1,11 @@
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
-
+import { Fragment, useEffect, useState, useRef } from "react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import Image from "next/image";
-import AppTitle from "../AppTitle/AppTitle";
+import NextImage from "next/image";
 import { SliderDialog } from "../SliderDialog/SliderDialog";
+
 type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -16,16 +15,33 @@ type Props = {
 
 export const AllPhoto = (props: Props) => {
   const [sliderIsOpen, setSliderIsOpen] = useState(false);
-  const [worksImagePathArr, setWorksImagePathArr] = useState<string[]>([]);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const closeButtonRef = useRef(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setTimeout(function () {
-        setWorksImagePathArr(props.imagesPath);
-      }, 1000);
+    const preloadImages = async () => {
+      const imagePromises = props.imagesPath.map((path) => {
+        return new Promise<void>((resolve) => {
+          const img = new window.Image(); // ブラウザのImage APIを使用
+          img.onload = () => {
+            setLoadedImages((prev) => new Set(prev).add(path));
+            resolve();
+          };
+          img.onerror = () => {
+            console.error(`Failed to load image: ${path}`);
+            resolve();
+          };
+          img.src = path;
+        });
+      });
+
+      await Promise.all(imagePromises);
     };
-    fetchData();
-  }, []);
+
+    if (props.isOpen) {
+      preloadImages();
+    }
+  }, [props.isOpen, props.imagesPath]);
 
   return (
     <>
@@ -37,30 +53,8 @@ export const AllPhoto = (props: Props) => {
             return;
           }}
         >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-300"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-white" />
-          </Transition.Child>
-          <div className="absolute top-3 right-2">
-            {props.isOpen && (
-              <XMarkIcon
-                className="h-10 w-10 cursor-pointer"
-                onClick={() => props.setIsOpen(false)}
-              />
-            )}
-          </div>
-          <div className="fixed top-0 left-0 z-50 h-16">
-            <AppTitle textColor={"text-black"} pd={"pl-5 pt-3"} />
-          </div>
-          <div className="fixed top-20 overflow-y-auto ">
-            <div className="flex min-h-full items-center justify-center  text-center">
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -70,25 +64,44 @@ export const AllPhoto = (props: Props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel
-                  className={`flex flex-wrap w-full h-screen max-w-md transform rounded-sm bg-white text-left align-middle shadow-xl transition-all`}
-                >
-                  {worksImagePathArr.map((path, index) => (
-                    <Image
-                      src={`${path}`}
-                      width={1616}
-                      height={1080}
-                      style={{
-                        width: "50%",
-                        height: `calc(${props.height}px / 2)`,
-                        padding: "1%",
-                      }}
-                      alt={`${path}`}
-                      key={index}
-                      priority
-                      onClick={() => setSliderIsOpen(true)}
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title
+                    as="h3"
+                    className="text-5xl pl-5 pt-3 pb-5 font-black font-medium leading-6 text-gray-900"
+                  >
+                    <h1>photos</h1>
+                  </Dialog.Title>
+                  <button
+                    ref={closeButtonRef}
+                    type="button"
+                    className="absolute top-2 right-2 text-gray-400 hover:text-gray-500"
+                    onClick={() => props.setIsOpen(false)}
+                  >
+                    <XMarkIcon
+                      className="h-10 w-10 cursor-pointer"
+                      onClick={() => props.setIsOpen(false)}
                     />
-                  ))}
+                  </button>
+                  <div className="mt-2">
+                    <div className="grid grid-cols-2 gap-2">
+                      {props.imagesPath.map((path, index) => (
+                        <div key={index} className="relative aspect-square">
+                          {loadedImages.has(path) ? (
+                            <NextImage // NextImageを使用
+                              src={path}
+                              alt={`Image ${index + 1}`}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              style={{ objectFit: "cover" }}
+                              onClick={() => setSliderIsOpen(true)}
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-gray-200 animate-pulse" />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

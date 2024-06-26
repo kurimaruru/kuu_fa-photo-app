@@ -7,11 +7,6 @@ import { Navbar } from "./components/Navbar";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const handleMenu = () => {
-    setTimeout(() => {
-      setMenuOpen((prev) => !prev);
-    }, 300);
-  };
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,7 +26,7 @@ export default function Home() {
           <h1 className="animate-arrowmove">Loading...</h1>
         </div>
       )}
-      <Navbar open={menuOpen} handleMenu={handleMenu} />
+      <Navbar />
       <div
         className={`main fixed top-0 left-0 w-full h-screen ${
           menuOpen ? "z-[-1]" : ""

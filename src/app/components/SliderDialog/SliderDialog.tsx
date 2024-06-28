@@ -16,26 +16,10 @@ type Props = {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   height: number | undefined;
+  imagesPath: string[];
 };
 
 export const SliderDialog = (props: Props) => {
-  const Images = [
-    {
-      path: "/home_1.jpg",
-      key: "home_1",
-      title: "Hiroshima",
-    },
-    {
-      path: "/home_2.jpg",
-      key: "home_2",
-      title: "Tokyo",
-    },
-    {
-      path: "/home_3.jpg",
-      key: "home_3",
-      title: "Tachikawa",
-    },
-  ];
   const slideSettings = {
     0: {
       slidesPerView: 1,
@@ -91,18 +75,18 @@ export const SliderDialog = (props: Props) => {
                   }}
                   className={styles.slideWrapper}
                 >
-                  {Images.map((image, index) => (
+                  {props.imagesPath.map((path, index) => (
                     <SwiperSlide key={index}>
                       <Image
-                        src={`${image.path}`}
+                        src={`${path}`}
                         width={1616}
                         height={1080}
                         style={{
                           width: "100%",
-                          height: `${props.height}px`,
+                          height: `350px`,
                         }}
-                        alt={`${image.key}`}
-                        key={`${image.key}`}
+                        alt={`${path}`}
+                        key={`${path}`}
                         priority
                       />
                     </SwiperSlide>

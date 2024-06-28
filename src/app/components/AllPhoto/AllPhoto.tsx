@@ -11,37 +11,38 @@ type Props = {
   setIsOpen: (isOpen: boolean) => void;
   height: number | undefined;
   imagesPath: string[];
+  title: string;
 };
 
 export const AllPhoto = (props: Props) => {
   const [sliderIsOpen, setSliderIsOpen] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set());
+  const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const closeButtonRef = useRef(null);
 
   useEffect(() => {
-    const preloadImages = async () => {
-      const imagePromises = props.imagesPath.map((path) => {
-        return new Promise<void>((resolve) => {
-          const img = new window.Image(); // ブラウザのImage APIを使用
-          img.onload = () => {
-            setLoadedImages((prev) => new Set(prev).add(path));
-            resolve();
-          };
-          img.onerror = () => {
-            console.error(`Failed to load image: ${path}`);
-            resolve();
-          };
-          img.src = path;
+    if (!props.isOpen) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const path = entry.target.getAttribute("data-path");
+            if (path) {
+              setVisibleImages((prev) => new Set(prev).add(path));
+            }
+          }
         });
-      });
+      },
+      { rootMargin: "100px" }
+    );
 
-      await Promise.all(imagePromises);
-    };
+    imageRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
 
-    if (props.isOpen) {
-      preloadImages();
-    }
-  }, [props.isOpen, props.imagesPath]);
+    return () => observer.disconnect();
+  }, [props.isOpen]);
 
   return (
     <>
@@ -69,7 +70,7 @@ export const AllPhoto = (props: Props) => {
                     as="h3"
                     className="text-5xl pl-5 pt-3 pb-5 font-black font-medium leading-6 text-gray-900"
                   >
-                    <h1>photos</h1>
+                    <h1>{props.title}</h1>
                   </Dialog.Title>
                   <button
                     ref={closeButtonRef}
@@ -85,16 +86,23 @@ export const AllPhoto = (props: Props) => {
                   <div className="mt-2">
                     <div className="grid grid-cols-2 gap-2">
                       {props.imagesPath.map((path, index) => (
-                        <div key={index} className="relative aspect-square">
-                          {loadedImages.has(path) ? (
-                            <NextImage // NextImageを使用
-                              src={path}
-                              alt={`Image ${index + 1}`}
-                              fill
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                              style={{ objectFit: "cover" }}
-                              onClick={() => setSliderIsOpen(true)}
-                            />
+                        <div
+                          key={index}
+                          className="relative aspect-square"
+                          ref={(el) => (imageRefs.current[index] = el)}
+                          data-path={path}
+                        >
+                          {visibleImages.has(path) ? (
+                            <div className="fade-in-image">
+                              <NextImage
+                                src={path}
+                                alt={`Image ${index + 1}`}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                style={{ objectFit: "cover" }}
+                                onClick={() => setSliderIsOpen(true)}
+                              />
+                            </div>
                           ) : (
                             <div className="w-full h-full bg-gray-200 animate-pulse" />
                           )}
@@ -112,7 +120,22 @@ export const AllPhoto = (props: Props) => {
         isOpen={sliderIsOpen}
         setIsOpen={setSliderIsOpen}
         height={props.height}
+        imagesPath={props.imagesPath}
       />
+      <style jsx>{`
+        .fade-in-image {
+          animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </>
   );
 };

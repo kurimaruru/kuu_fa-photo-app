@@ -1,9 +1,9 @@
 "use client";
 
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState, useRef } from "react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import NextImage from "next/image";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { SliderDialog } from "../SliderDialog/SliderDialog";
 
 type Props = {
@@ -23,26 +23,73 @@ export const AllPhoto = (props: Props) => {
   useEffect(() => {
     if (!props.isOpen) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const path = entry.target.getAttribute("data-path");
+    let observer: IntersectionObserver;
+
+    const initializeObserver = () => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const path = entry.target.getAttribute("data-path");
+              if (path) {
+                setVisibleImages((prev) => new Set(prev).add(path));
+              }
+            }
+          });
+        },
+        { rootMargin: "100px", threshold: 0.1 }
+      );
+
+      imageRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
+    };
+
+    // コンポーネントのマウント/更新後に少し遅延を入れてObserverを初期化
+    const timeoutId = setTimeout(() => {
+      initializeObserver();
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (observer) {
+        observer.disconnect();
+      }
+    };
+  }, [props.isOpen]);
+
+  // 初回レンダリング時に画面内の画像を表示するための追加のuseEffect
+  useEffect(() => {
+    if (props.isOpen) {
+      const checkInitialVisibility = () => {
+        imageRefs.current.forEach((ref) => {
+          if (ref && isElementInViewport(ref)) {
+            const path = ref.getAttribute("data-path");
             if (path) {
               setVisibleImages((prev) => new Set(prev).add(path));
             }
           }
         });
-      },
-      { rootMargin: "100px" }
-    );
+      };
 
-    imageRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+      // コンポーネントのマウント/更新後に少し遅延を入れて初期可視性をチェック
+      const timeoutId = setTimeout(checkInitialVisibility, 100);
 
-    return () => observer.disconnect();
+      return () => clearTimeout(timeoutId);
+    }
   }, [props.isOpen]);
+
+  // viewport内にある要素かどうかを判定する関数
+  const isElementInViewport = (el: Element) => {
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  };
 
   return (
     <>
@@ -66,6 +113,7 @@ export const AllPhoto = (props: Props) => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                  <div className="max-h-[100vh] overflow-y-auto"></div>
                   <Dialog.Title
                     as="h3"
                     className="text-5xl pl-5 pt-3 pb-5 font-black font-medium leading-6 text-gray-900"

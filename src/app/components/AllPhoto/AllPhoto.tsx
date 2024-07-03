@@ -132,7 +132,7 @@ export const AllPhoto = (props: Props) => {
                         onClick={() => props.setIsOpen(false)}
                       />
                     </button>
-                    <div className="mt-2 max-h-[99vh] overflow-y-scroll hidden-scrollbar">
+                    <div className="mt-2 max-h-[calc(100vh+60px)] overflow-y-scroll hidden-scrollbar">
                       <div className="grid grid-cols-2 gap-2">
                         {props.imagesPath.map((path, index) => (
                           <div

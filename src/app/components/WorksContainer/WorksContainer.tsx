@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import { WorksImageType } from "../../types";
 import { Navbar } from "../Navbar/Navbar";
-import { ClientSideWrapper } from "./ClientSideWrapper";
 import WorksImages from "../WorksImages/WorksImage";
+import { ClientSideWrapper } from "./ClientSideWrapper";
 
 type Props = {
   worksImages: WorksImageType[];

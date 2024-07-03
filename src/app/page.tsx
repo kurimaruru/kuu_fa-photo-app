@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
+import DynamicLoadingScreen from "./components/Loading/Loading";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -17,14 +18,7 @@ export default function Home() {
   return (
     <div className="w-full h-screen">
       {loading && ( // ローディング中はローディング画面を表示
-        <div
-          className={`fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-white z-50 ${
-            !loading &&
-            "transform transition duration-600 ease-in-out opacity-0"
-          } `}
-        >
-          <h1 className="animate-arrowmove">Loading...</h1>
-        </div>
+        <DynamicLoadingScreen />
       )}
       <Navbar />
       <div

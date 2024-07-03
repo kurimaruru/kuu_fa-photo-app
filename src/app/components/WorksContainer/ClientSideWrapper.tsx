@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
+import DynamicLoadingScreen from "../Loading/Loading";
 
 interface ChildProps {
   windowWidth?: number;
@@ -17,11 +18,7 @@ export function ClientSideWrapper({ children }: { children: ReactNode }) {
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="fixed top-0 left-0 w-full h-screen flex justify-center items-center bg-white z-50">
-        <h1 className="animate-arrowmove">Loading...</h1>
-      </div>
-    );
+    return <DynamicLoadingScreen />;
   }
 
   const childrenWithProps = React.Children.map(children, (child) => {

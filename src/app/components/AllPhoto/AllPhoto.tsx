@@ -100,8 +100,9 @@ export const AllPhoto = (props: Props) => {
           onClose={() => {
             return;
           }}
+          initialFocus={closeButtonRef}
         >
-          <div className="fixed inset-0 overflow-y-auto">
+          <div className="fixed inset-0">
             <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}
@@ -112,7 +113,7 @@ export const AllPhoto = (props: Props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="h-full w-full max-w-md transform rounded-2xl bg-white text-left align-middle shadow-xl transition-all overflow-y-auto">
+                <Dialog.Panel className="h-full w-full max-w-md transform rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
                   <div className="h-full">
                     <Dialog.Title
                       as="h3"
@@ -131,7 +132,7 @@ export const AllPhoto = (props: Props) => {
                         onClick={() => props.setIsOpen(false)}
                       />
                     </button>
-                    <div className="mt-2 max-h-[99vh] overflow-y-auto">
+                    <div className="mt-2 max-h-[99vh] overflow-y-scroll hidden-scrollbar">
                       <div className="grid grid-cols-2 gap-2">
                         {props.imagesPath.map((path, index) => (
                           <div

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
 import { WorksImageType } from "@/app/types";
 import { Outfit } from "next/font/google";
 import Image from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AllPhoto } from "../AllPhoto/AllPhoto";
 
 const OutfitFont = Outfit({
@@ -20,6 +20,9 @@ type Props = {
 
 const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null
+  );
   const [visibleImages, setVisibleImages] = useState<number[]>([]);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -52,13 +55,13 @@ const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
     return () => observer.disconnect();
   }, [visibleImages]);
 
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
+    setIsOpen(true);
+  };
+
   return (
-    <div
-      className="article-image w-full"
-      style={{
-        height: imageHeight ? `${imageHeight}px` : "auto",
-      }}
-    >
+    <div className="article-image w-full">
       {worksImages.map((image, index) => (
         <div key={index} ref={(el) => (imageRefs.current[index] = el)}>
           <div className="relative mx-1 mb-1 hover:opacity-70">
@@ -71,10 +74,11 @@ const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
                   style={{
                     width: "100%",
                     height: imageHeight ? `${imageHeight}px` : "auto",
+                    objectFit: "cover",
                   }}
                   alt={`${image.title}`}
                   loading="lazy"
-                  onClick={() => setIsOpen(true)}
+                  onClick={() => handleImageClick(index)}
                 />
               </div>
             )}
@@ -84,17 +88,17 @@ const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
               {image.title}
             </p>
           </div>
-          {isOpen && (
-            <AllPhoto
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              height={imageHeight}
-              imagesPath={image.worksImages}
-              title={image.title}
-            />
-          )}
         </div>
       ))}
+      {isOpen && selectedImageIndex !== null && (
+        <AllPhoto
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          height={imageHeight}
+          imagesPath={worksImages[selectedImageIndex].worksImages}
+          title={worksImages[selectedImageIndex].title}
+        />
+      )}
       <style jsx>{`
         .fade-in-image {
           animation: fadeInUp 0.8s ease-out;

@@ -113,49 +113,50 @@ export const AllPhoto = (props: Props) => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
-                  <div className="max-h-[100vh] overflow-y-auto"></div>
-                  <Dialog.Title
-                    as="h3"
-                    className="text-5xl pl-5 pt-3 pb-5 font-black font-medium leading-6 text-gray-900"
-                  >
-                    <h1>{props.title}</h1>
-                  </Dialog.Title>
-                  <button
-                    ref={closeButtonRef}
-                    type="button"
-                    className="absolute top-2 right-2 text-gray-400 hover:text-gray-500"
-                    onClick={() => props.setIsOpen(false)}
-                  >
-                    <XMarkIcon
-                      className="h-10 w-10 cursor-pointer"
+                  <div className="max-h-[99vh] overflow-y-auto">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-5xl pl-5 pt-3 pb-5 font-black font-medium leading-6 text-gray-900"
+                    >
+                      <h1>{props.title}</h1>
+                    </Dialog.Title>
+                    <button
+                      ref={closeButtonRef}
+                      type="button"
+                      className="absolute top-2 right-2 text-gray-400 hover:text-gray-500"
                       onClick={() => props.setIsOpen(false)}
-                    />
-                  </button>
-                  <div className="mt-2">
-                    <div className="grid grid-cols-2 gap-2">
-                      {props.imagesPath.map((path, index) => (
-                        <div
-                          key={index}
-                          className="relative aspect-square"
-                          ref={(el) => (imageRefs.current[index] = el)}
-                          data-path={path}
-                        >
-                          {visibleImages.has(path) ? (
-                            <div className="fade-in-image">
-                              <NextImage
-                                src={path}
-                                alt={`Image ${index + 1}`}
-                                fill
-                                sizes="(max-width: 768px) 100vw, 50vw"
-                                style={{ objectFit: "cover" }}
-                                onClick={() => setSliderIsOpen(true)}
-                              />
-                            </div>
-                          ) : (
-                            <div className="w-full h-full bg-gray-200 animate-pulse" />
-                          )}
-                        </div>
-                      ))}
+                    >
+                      <XMarkIcon
+                        className="h-10 w-10 cursor-pointer"
+                        onClick={() => props.setIsOpen(false)}
+                      />
+                    </button>
+                    <div className="mt-2">
+                      <div className="grid grid-cols-2 gap-2">
+                        {props.imagesPath.map((path, index) => (
+                          <div
+                            key={index}
+                            className="relative aspect-square"
+                            ref={(el) => (imageRefs.current[index] = el)}
+                            data-path={path}
+                          >
+                            {visibleImages.has(path) ? (
+                              <div className="fade-in-image">
+                                <NextImage
+                                  src={path}
+                                  alt={`Image ${index + 1}`}
+                                  fill
+                                  sizes="(max-width: 768px) 100vw, 50vw"
+                                  style={{ objectFit: "cover" }}
+                                  onClick={() => setSliderIsOpen(true)}
+                                />
+                              </div>
+                            ) : (
+                              <div className="w-full h-full bg-gray-200 animate-pulse" />
+                            )}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </Dialog.Panel>

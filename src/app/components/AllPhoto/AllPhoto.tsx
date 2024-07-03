@@ -113,7 +113,7 @@ export const AllPhoto = (props: Props) => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="h-full w-full max-w-md transform rounded-2xl bg-white text-left align-middle shadow-xl transition-all overflow-y-auto">
-                  <div className="h-full ">
+                  <div className="h-[10000px]">
                     <Dialog.Title
                       as="h3"
                       className="text-5xl pl-5 pt-3 pb-5 font-black leading-6 text-gray-900"

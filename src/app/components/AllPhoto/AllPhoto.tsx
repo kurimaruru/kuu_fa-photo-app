@@ -113,7 +113,7 @@ export const AllPhoto = (props: Props) => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="h-full w-full max-w-md transform rounded-2xl bg-white text-left align-middle shadow-xl transition-all overflow-y-auto">
-                  <div className="h-[10000px]">
+                  <div className="h-full">
                     <Dialog.Title
                       as="h3"
                       className="text-5xl pl-5 pt-3 pb-5 font-black leading-6 text-gray-900"
@@ -131,7 +131,7 @@ export const AllPhoto = (props: Props) => {
                         onClick={() => props.setIsOpen(false)}
                       />
                     </button>
-                    <div className="mt-2">
+                    <div className="mt-2 max-h-[99vh] overflow-y-auto">
                       <div className="grid grid-cols-2 gap-2">
                         {props.imagesPath.map((path, index) => (
                           <div
@@ -141,7 +141,7 @@ export const AllPhoto = (props: Props) => {
                             data-path={path}
                           >
                             {visibleImages.has(path) ? (
-                              <div className="fade-in-image">
+                              <div className="fade-in-image relative w-full h-full">
                                 <NextImage
                                   src={path}
                                   alt={`Image ${index + 1}`}

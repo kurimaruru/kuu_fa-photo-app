@@ -5,6 +5,7 @@ import { Outfit } from "next/font/google";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AllPhoto } from "../AllPhoto/AllPhoto";
+import ImageCard from "../ImageCard/ImageCard";
 
 const OutfitFont = Outfit({
   weight: "200",
@@ -66,22 +67,12 @@ const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
         <div key={index} ref={(el) => (imageRefs.current[index] = el)}>
           <div className="relative mx-1 mb-1">
             {visibleImages.includes(index) && (
-              <div className="fade-in-image">
-                <h1 className={`text-3xl w-full text-left`}>{image.title}</h1>
-                <Image
-                  src={`${image.thumbnail}`}
-                  width={1616}
-                  height={1080}
-                  style={{
-                    width: "100%",
-                    height: imageHeight ? `${imageHeight}px` : "auto",
-                    objectFit: "cover",
-                  }}
-                  alt={`${image.title}`}
-                  loading="lazy"
-                  onClick={() => handleImageClick(index)}
-                />
-              </div>
+              <ImageCard
+                image={image}
+                imageHeight={imageHeight}
+                handleImageClick={handleImageClick}
+                index={index}
+              />
             )}
           </div>
         </div>

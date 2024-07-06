@@ -19,6 +19,7 @@ export const AllPhoto = (props: Props) => {
   const [visibleImages, setVisibleImages] = useState<Set<string>>(new Set());
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
   const closeButtonRef = useRef(null);
+  const [sliderImages, setSliderImages] = useState<string[]>([]);
 
   useEffect(() => {
     if (!props.isOpen) return;
@@ -91,6 +92,13 @@ export const AllPhoto = (props: Props) => {
     );
   };
 
+  const openSlider = (index: number) => {
+    const prevImage = props.imagesPath.filter((_, i) => i <= index);
+    const currentAfterImages = props.imagesPath.filter((_, i) => i >= index);
+    setSliderImages(currentAfterImages.concat(prevImage));
+    setSliderIsOpen(true);
+  };
+
   return (
     <>
       <Transition appear show={props.isOpen} as={Fragment}>
@@ -149,7 +157,7 @@ export const AllPhoto = (props: Props) => {
                                   fill
                                   sizes="(max-width: 768px) 100vw, 50vw"
                                   style={{ objectFit: "cover" }}
-                                  onClick={() => setSliderIsOpen(true)}
+                                  onClick={() => openSlider(index)}
                                 />
                               </div>
                             ) : (
@@ -170,7 +178,7 @@ export const AllPhoto = (props: Props) => {
         isOpen={sliderIsOpen}
         setIsOpen={setSliderIsOpen}
         height={props.height}
-        imagesPath={props.imagesPath}
+        imagesPath={sliderImages}
       />
       <style jsx>{`
         .fade-in-image {

@@ -64,9 +64,10 @@ const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
     <div className="article-image w-full">
       {worksImages.map((image, index) => (
         <div key={index} ref={(el) => (imageRefs.current[index] = el)}>
-          <div className="relative mx-1 mb-1 hover:opacity-70">
+          <div className="relative mx-1 mb-1">
             {visibleImages.includes(index) && (
               <div className="fade-in-image">
+                <h1 className={`text-3xl w-full text-left`}>{image.title}</h1>
                 <Image
                   src={`${image.thumbnail}`}
                   width={1616}
@@ -82,11 +83,6 @@ const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
                 />
               </div>
             )}
-            <p
-              className={`${OutfitFont.className} absolute text-3xl w-full text-center top-[85%] left-[50%] transform -translate-x-1/2 opacity-30 text-white bg-gray-800`}
-            >
-              {image.title}
-            </p>
           </div>
         </div>
       ))}

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MenuItem } from "../MenuItem/MenuItem";
 
 const menuItems = [
+  { name: "Home", href: "/" },
   { name: "Works", href: "/works" },
   { name: "Contact", href: "/contact" },
   { name: "About", href: "/about" },

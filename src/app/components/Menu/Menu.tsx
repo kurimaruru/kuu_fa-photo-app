@@ -1,7 +1,6 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { MenuItem } from "../MenuItem/MenuItem";
 
 const menuItems = [
   { name: "Home", href: "/" },
@@ -17,7 +16,22 @@ type Props = {
 export function Menu(props: Props) {
   return (
     <>
-      <button className="fixed top-2 right-2 z-40" onClick={props.handleMenu}>
+      <div className="hidden lg:block ">
+        <div className="flex fixed top-6 right-2 z-40">
+          {menuItems.map((item) => (
+            <a
+              href={item.href}
+              className="px-3 text-2  xl text-gray-700 hover:text-gray-900 transition-colors"
+            >
+              {item.name}
+            </a>
+          ))}
+        </div>
+      </div>
+      <button
+        className="fixed top-2 right-2 z-40 lg:hidden"
+        onClick={props.handleMenu}
+      >
         <OpenIcon open={props.open} />
       </button>
       <AnimatePresence>

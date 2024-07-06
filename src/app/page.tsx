@@ -61,7 +61,7 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="col-span-1 lg:col-span-1 order-5">
+              <div className="col-span-1 lg:col-span-1 order-5 lg:order-6">
                 <Image
                   src="/Home/home_5.jpg"
                   alt={"home_5"}
@@ -70,7 +70,7 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="col-span-2 lg:col-span-2 order-6">
+              <div className="col-span-2 lg:col-span-2 order-6 lg:order-5">
                 <Image
                   src="/Home/home_6.jpg"
                   alt={"home_6"}
@@ -79,7 +79,7 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="col-span-2 lg:col-span-2 order-7 lg:order-8">
+              <div className="col-span-2 lg:col-span-2 order-7">
                 <Image
                   src="/Home/home_7.jpg"
                   alt={"home_7"}
@@ -88,7 +88,7 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="col-span-1 lg:col-span-1 order-8 lg:order-7">
+              <div className="col-span-1 lg:col-span-1 order-8">
                 <Image
                   src="/Home/home_8.jpg"
                   alt={"home_8"}

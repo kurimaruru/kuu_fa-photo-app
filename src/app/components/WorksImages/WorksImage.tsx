@@ -65,7 +65,7 @@ const WorksImages = ({ windowWidth, windowHeight, worksImages }: Props) => {
     <div className="article-image w-full">
       {worksImages.map((image, index) => (
         <div key={index} ref={(el) => (imageRefs.current[index] = el)}>
-          <div className="relative mx-1 mb-1">
+          <div className="relative mx-1 mb-1 fade-in-image">
             {visibleImages.includes(index) && (
               <ImageCard
                 image={image}

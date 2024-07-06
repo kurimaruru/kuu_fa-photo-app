@@ -22,6 +22,7 @@ export function Menu(props: Props) {
             <a
               href={item.href}
               className="px-3 text-2  xl text-gray-700 hover:text-gray-900 transition-colors"
+              key={item.name}
             >
               {item.name}
             </a>

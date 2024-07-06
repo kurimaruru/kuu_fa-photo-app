@@ -111,7 +111,7 @@ export const AllPhoto = (props: Props) => {
           initialFocus={closeButtonRef}
         >
           <div className="fixed inset-0">
-            <div className="flex min-h-full items-center justify-center text-center">
+            <div className="flex min-h-full min-w-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -121,7 +121,7 @@ export const AllPhoto = (props: Props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="h-full w-full max-w-md transform rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="h-full w-full transform rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
                   <div className="h-full">
                     <Dialog.Title
                       as="h3"
@@ -141,7 +141,7 @@ export const AllPhoto = (props: Props) => {
                       />
                     </button>
                     <div className="mt-2 max-h-[calc(100vh-60px)] overflow-y-scroll hidden-scrollbar">
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-2 gap-2 lg:grid-cols-3">
                         {props.imagesPath.map((path, index) => (
                           <div
                             key={index}
@@ -155,7 +155,7 @@ export const AllPhoto = (props: Props) => {
                                   src={path}
                                   alt={`Image ${index + 1}`}
                                   fill
-                                  sizes="(max-width: 768px) 100vw, 50vw"
+                                  sizes="(min-width: 1024px) 100vw, 50vw"
                                   style={{ objectFit: "cover" }}
                                   onClick={() => openSlider(index)}
                                 />

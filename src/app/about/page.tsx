@@ -50,15 +50,15 @@ export default function About() {
         <div className="bg-gradient-to-br from-blue-100 to-green-100 min-h-screen">
           <Navbar />
           <div className="fixed top-20 left-0 h-[calc(100vh-100px)] container mx-auto px-4 overflow-y-scroll hidden-scrollbar">
-            <motion.h1
-              className="text-4xl font-bold mb-8 text-center text-gray-800"
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              About Me
-            </motion.h1>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid gap-8 lg:justify-center">
+              <motion.h1
+                className="text-4xl font-bold text-center text-gray-800"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                About Me
+              </motion.h1>
               <motion.div
                 className="bg-white p-6 rounded-lg shadow-lg"
                 initial={{ opacity: 0, x: -50 }}
@@ -83,16 +83,18 @@ export default function About() {
                   </motion.div>
                 ))}
               </motion.div>
+            </div>
+            <div className="mt-5 grid gap-8 lg:justify-center w-full">
               <motion.h1
                 className="text-4xl font-bold text-center text-gray-800"
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Contact
+                Contact Me
               </motion.h1>
               <motion.div
-                className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-center items-center"
+                className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-center items-center lg:w-[863px]"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}

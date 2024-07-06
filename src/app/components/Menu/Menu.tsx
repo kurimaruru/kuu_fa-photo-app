@@ -6,8 +6,7 @@ import { MenuItem } from "../MenuItem/MenuItem";
 const menuItems = [
   { name: "Home", href: "/" },
   { name: "Works", href: "/works" },
-  { name: "Contact", href: "/contact" },
-  { name: "About", href: "/about" },
+  { name: "About Me", href: "/about" },
 ];
 
 type Props = {
@@ -27,15 +26,30 @@ export function Menu(props: Props) {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 z-30 w-full px-4 bg-slate-50"
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed top-0 right-0 z-30 w-full md:w-80 h-full bg-gradient-to-br from-white to-cyan-100 shadow-lg"
           >
-            <div className="h-screen">
-              <div className="menuItem mt-20">
-                {menuItems.map((item) => (
-                  <MenuItem href={item.href} name={item.name} key={item.name} />
-                ))}
-              </div>
+            <div className="h-full flex flex-col justify-between p-8">
+              <nav className="flex-grow flex flex-col justify-center">
+                <ul className="space-y-6">
+                  {menuItems.map((item) => (
+                    <motion.li
+                      key={item.name}
+                      whileHover={{ scale: 1.05, x: 10 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="py-2"
+                    >
+                      <a
+                        href={item.href}
+                        className="text-4xl text-gray-700 hover:text-gray-900 transition-colors"
+                      >
+                        {item.name}
+                      </a>
+                    </motion.li>
+                  ))}
+                </ul>
+              </nav>
+              <div className="text-sm text-gray-500">© 2023 Kuu_fa photo</div>
             </div>
           </motion.div>
         )}

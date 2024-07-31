@@ -1,37 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TO:藤野
 
-## Getting Started
+## 画像配置手順
 
-First, run the development server:
+### 1. public フォルダを開く
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+以下のようなディレクトリ構成になっており、各ページに表示する画像を配置する方針になっている
+
+- about
+- HOME
+- Works
+
+### 2. Works ページの写真を配置する
+
+- public/Works を開く
+- Works フォルダの配下は genre フォルダがあり、各ジャンルごとにディレクトリが分かれている
+  - 例えば`Tokyo`というジャンルを新しく作成したい場合は`public/Works/genre`配下に`images`と`thumbnail`フォルダを作成する
+- `images`フォルダの中身は一覧表示させたい画像を複数枚配置する
+- `thumbnail`フォルダには works 画面を表示させたときに表示されるトップ画像を配置する
+- ここまで実行すれば Works ページに追加した画像が見れるようになるので確認する
+  - ターミナルで以下のコマンドを実行する
+  ```bash
+  npm run dev
+  ```
+  - すると、` http://localhost:3000`が表示されるので、それをクリックしブラウザでアクセスする。
+  - works ページまで遷移して配置した画像が正しく表示されるか確認する
+
+### 3. Home 画面の写真を配置する
+
+- `public/Works/Home` を開く
+- ここはただ配置しただけでは画像が表示されないので、以下の方針で画像を配置することとする。
+  - 命名規則: 画像名は`home_1.jpg`のように 1~8 の数字を`home_`の後につける
+  - 1~8 の画像は HOME 画面の左上から右へ折り返す形で表示される
+  - 画像は縦長 → 横長 → 縦長 → 横長の順に表示されるため、それを意識して配置する
+
+### 4. About ページの写真を配置する
+
+- `public/Works/About` を開く
+- About 配下に`me.jpg`を配置する
+
+## About ページの自己紹介文を変えたい場合
+
+- `src/app/about`配下の`page.tsx`を開く
+- 以下のような`sections`という名前の変数があるので、`title`と`content`を自分の好きなように編集する。
+- 改行を入れたいところで「\n」を入れる
+
+```json
+  const sections = [
+    {
+      title: "基本情報",
+      content: "藤野大輔 Daisuke Fujino\n1998年 東京都出身\n元サッカー少年",
+    },
+    {
+      title: "趣味と特徴",
+      content:
+        "好きなもの：Oasis（ロックバンド）、自然、エスニック料理全般\n嫌いなもの：マヨネーズ",
+    },
+    {
+      title: "旅の経験",
+      content:
+        "19歳でベトナムのダナン、カンボジアに長期滞在、その後東南アジアを周遊するバックパッカー旅を敢行、旅に目覚める。\n20歳でヨーロッパ１ヶ月間の旅をした後に、社会人になるが旅への情熱を捨てきれず、自分の好きなカメラを持って旅することを決意。",
+    },
+    { title: "撮影テーマ", content: "自然、人物、建物など" },
+    {
+      title: "次の冒険",
+      content: "Next、5月7日より東南アジアを３ヶ月周遊します。",
+    },
+  ];
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# kuu_fa-photo-app

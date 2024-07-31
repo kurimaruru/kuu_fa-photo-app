@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../components/Navbar";
 import { motion } from "framer-motion";
-import { CameraIcon, GlobeIcon, Instagram, InstagramIcon } from "lucide-react";
+import { Instagram } from "lucide-react";
 import { setTimeout } from "timers";
 import DynamicLoadingScreen from "../components/Loading/Loading";
 
@@ -100,7 +100,7 @@ export default function About() {
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <img
-                  src="/Home/home_3.jpg"
+                  src="/About/me.jpg"
                   alt="Daisuke Fujino"
                   className="rounded-full w-48 h-48 object-cover mb-6"
                 />

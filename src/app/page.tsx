@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-
 import { useEffect, useState } from "react";
 import { Navbar } from "./components/Navbar";
 import DynamicLoadingScreen from "./components/Loading/Loading";
@@ -14,9 +13,10 @@ export default function Home() {
       setLoading(false);
     }, 2000);
   }, []);
+
   return (
     <div className="w-full h-screen">
-      {loading ? ( // ローディング中はローディング画面を表示
+      {loading ? (
         <DynamicLoadingScreen />
       ) : (
         <>
@@ -32,6 +32,7 @@ export default function Home() {
                   width={600}
                   height={900}
                   className="w-full h-full object-cover"
+                  priority
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-2">
@@ -41,6 +42,7 @@ export default function Home() {
                   width={900}
                   height={600}
                   className="w-full h-full object-cover"
+                  priority
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-3 lg:order-4">
@@ -50,6 +52,7 @@ export default function Home() {
                   width={600}
                   height={900}
                   className="w-full h-full object-cover"
+                  priority
                 />
               </div>
               <div className="col-span-1 lg:col-span-1 order-4 lg:order-3">
@@ -59,6 +62,7 @@ export default function Home() {
                   width={900}
                   height={600}
                   className="w-full h-full object-cover"
+                  priority
                 />
               </div>
               <div className="col-span-1 lg:col-span-1 order-5 lg:order-6">
@@ -68,6 +72,7 @@ export default function Home() {
                   width={600}
                   height={900}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-6 lg:order-5">
@@ -77,6 +82,7 @@ export default function Home() {
                   width={900}
                   height={600}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-7">
@@ -86,6 +92,7 @@ export default function Home() {
                   width={600}
                   height={900}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
               <div className="col-span-1 lg:col-span-1 order-8">
@@ -95,6 +102,7 @@ export default function Home() {
                   width={900}
                   height={600}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             </div>

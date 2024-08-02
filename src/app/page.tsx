@@ -33,6 +33,17 @@ export default function Home() {
                   height={900}
                   className="w-full h-full object-cover"
                   priority
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${600} ${900}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-2">
@@ -43,6 +54,17 @@ export default function Home() {
                   height={600}
                   className="w-full h-full object-cover"
                   priority
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${900} ${600}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-3 lg:order-4">
@@ -53,6 +75,17 @@ export default function Home() {
                   height={900}
                   className="w-full h-full object-cover"
                   priority
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${600} ${900}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="col-span-1 lg:col-span-1 order-4 lg:order-3">
@@ -63,6 +96,17 @@ export default function Home() {
                   height={600}
                   className="w-full h-full object-cover"
                   priority
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${900} ${600}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="col-span-1 lg:col-span-1 order-5 lg:order-6">
@@ -73,6 +117,17 @@ export default function Home() {
                   height={900}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${600} ${900}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-6 lg:order-5">
@@ -83,6 +138,17 @@ export default function Home() {
                   height={600}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${900} ${600}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="col-span-2 lg:col-span-2 order-7">
@@ -93,6 +159,17 @@ export default function Home() {
                   height={900}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${600} ${900}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
               <div className="col-span-1 lg:col-span-1 order-8">
@@ -103,6 +180,17 @@ export default function Home() {
                   height={600}
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  quality={90}
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${btoa(
+                    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${900} ${600}">
+                        <filter id="b" color-interpolation-filters="sRGB">
+                          <feGaussianBlur stdDeviation="20" />
+                        </filter>
+                        <rect width="100%" height="100%" x="0" y="0" fill="#f0f0f0" filter="url(#b)" />
+                      </svg>`
+                  )}`}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               </div>
             </div>

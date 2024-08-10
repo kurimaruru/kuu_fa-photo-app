@@ -81,18 +81,22 @@ export const SliderDialog = (props: Props) => {
                 >
                   {props.imagesPath.map((path, index) => (
                     <SwiperSlide key={index}>
-                      <Image
-                        src={`${path}`}
-                        width={1616}
-                        height={1080}
+                      <div
                         style={{
                           width: "100%",
-                          height: `350px`,
+                          aspectRatio: "3/2",
+                          position: "relative",
                         }}
-                        alt={`${path}`}
-                        key={`${path}`}
-                        priority
-                      />
+                      >
+                        <Image
+                          src={`${path}`}
+                          width={450}
+                          height={300}
+                          alt={`${path}`}
+                          key={`${path}`}
+                          priority
+                        />
+                      </div>
                     </SwiperSlide>
                   ))}
                 </Swiper>

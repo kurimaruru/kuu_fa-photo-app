@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { Navbar } from "../components/Navbar";
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
+import { useEffect, useState } from "react";
 import { setTimeout } from "timers";
 import DynamicLoadingScreen from "../components/Loading/Loading";
+import { Navbar } from "../components/Navbar";
 
 export default function About() {
   const [activeSection, setActiveSection] = useState(0);
@@ -93,6 +93,7 @@ export default function About() {
               >
                 Contact Me
               </motion.h1>
+
               <motion.div
                 className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-center items-center lg:w-[863px]"
                 initial={{ opacity: 0, x: 50 }}
@@ -104,9 +105,21 @@ export default function About() {
                   alt="Daisuke Fujino"
                   className="rounded-full w-48 h-48 object-cover mb-6"
                 />
+                <motion.p className="px-3 pb-2">
+                  写真や最新の活動についてもっと知りたい方、またはご連絡をお考えの方は、ぜひInstagramをフォローしてください。ダイレクトメッセージでのお問い合わせもお待ちしています。
+                </motion.p>
                 <div className="flex justify-center space-x-4">
                   <div className="relative w-10 h-10 flex items-center justify-center rounded-lg instagram-gradient overflow-hidden">
-                    <Instagram size={24} className="text-white z-10" />
+                    <Instagram
+                      size={24}
+                      className="text-white z-10"
+                      onClick={() =>
+                        window.open(
+                          "https://www.instagram.com/kuu_fa.photo?igsh=MWNsdGxxNXBnMTdqbw==",
+                          "_blank"
+                        )
+                      }
+                    />
                     <style jsx>{`
                       .instagram-gradient::before {
                         content: "";
